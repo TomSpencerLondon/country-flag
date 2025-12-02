@@ -6,6 +6,15 @@ Class {
 }
 
 { #category : 'tests' }
+EarthMapCountryTest >> testCountryAsRSShape [
+	| country shape |
+	country := EarthMapCountry new.
+	country svgPath: 'M 0 0 L 10 10'.
+	shape := country asRSShape.
+	self assert: (shape isKindOf: RSSVGPath).
+]
+
+{ #category : 'tests' }
 EarthMapCountryTest >> testCountryHasCode [
 	| country |
 	country := EarthMapCountry new.

@@ -11,6 +11,11 @@ Class {
 }
 
 { #category : 'accessing' }
+EarthMapCountry >> asRSShape [
+	^ RSSVGPath new svgPath: svgPath
+]
+
+{ #category : 'accessing' }
 EarthMapCountry >> code [
 	^ code.
 ]
