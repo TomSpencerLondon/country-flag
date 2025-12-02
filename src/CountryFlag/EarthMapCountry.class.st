@@ -1,6 +1,6 @@
 Class {
 	#name : 'EarthMapCountry',
-	#superclass : 'Object',
+	#superclass : 'SpPresenterWithModel',
 	#instVars : [
 		'code',
 		'name',
@@ -23,6 +23,17 @@ EarthMapCountry >> code [
 { #category : 'accessing' }
 EarthMapCountry >> code: countryCode [
 	code := countryCode
+]
+
+{ #category : 'accessing' }
+EarthMapCountry >> fetchFlag [
+	| request pngArray |
+	request := ZnClient new.
+	request get: 'https://flagcdn.com/w320/', code asLowercase, '.png'.
+	request isSuccess ifTrue: [ 
+		 pngArray := request response contents.
+		 ^ ImageReadWriter formFromStream: (ReadStream on: pngArray) ].
+	^ nil
 ]
 
 { #category : 'accessing' }

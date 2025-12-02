@@ -56,3 +56,11 @@ EarthMapCountryTest >> testCountryPrintOn [
 	country name: 'France'.
 	self assert: (country printString includesSubstring: 'France').
 ]
+
+{ #category : 'tests' }
+EarthMapCountryTest >> testFetchFlagReturnsForm [
+	| country flag |
+	country := EarthMapCountry new code: 'fr'.
+	flag := country fetchFlag.
+	self assert: (flag isKindOf: Form).
+]
