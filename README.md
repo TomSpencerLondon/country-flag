@@ -199,6 +199,66 @@ fetchFlag
 
 ---
 
+
+## What We Learned
+
+### 1. TDD in Pharo
+We followed the RED → GREEN → REFACTOR cycle throughout:
+- Write a failing test first
+- Implement minimum code to pass
+- Clean up while keeping tests green
+
+This gave us confidence that each piece worked before building the next.
+
+### 2. Domain Modeling
+We separated concerns into clear classes:
+- **EarthMapCountry** — Knows about one country (data + behavior)
+- **EarthMap** — Manages collection of countries (import, query)
+- **EarthCountryBrowser** — UI only (no domain logic)
+
+Each class has a single responsibility.
+
+### 3. XML Parsing
+We learned to:
+- Load XML with `XMLDOMParser`
+- Navigate the tree with `nodes`, `first`, `attributeAt:`
+- Convert XML elements to domain objects with `fromXML:`
+
+### 4. Roassal Visualization
+- `RSSVGPath` renders SVG path data
+- `RSCanvas` is the drawing surface
+- `zoomToFit` scales shapes to visible size
+- `@ RSCanvasController` adds zoom/pan interaction
+
+### 5. HTTP in Pharo
+`ZnClient` makes HTTP requests simple:
+```smalltalk
+request := ZnClient new.
+request get: 'https://example.com/image.png'.
+request isSuccess ifTrue: [ ... ].
+```
+
+### 6. Spec UI Framework
+Key patterns we discovered:
+- **Factory methods**: `newDropList`, `newImage`, `newRoassal`
+- **Layout**: `SpBoxLayout` with `newTopToBottom`, `newLeftToRight`
+- **Model timing**: Use `setModelBeforeInitialization:` to receive model before `initializePresenters`
+- **Roassal updates**: Use `script:` block (not `canvas:`) to rebuild dynamically
+
+### 7. Debugging in Pharo
+- Use Playground to test code snippets
+- Use `inspect` to examine objects
+- Use Transcript for logging
+- Isolate problems by testing components separately
+
+### 8. Image-Based Development
+Everything lives in the Pharo image:
+- Classes are created interactively
+- Code is saved by saving the image
+- No separate compile step needed
+
+---
+
 ## Resources
 
 - [Original Tutorial PDF](CountryFlag.pdf)
