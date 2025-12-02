@@ -5,7 +5,10 @@ Class {
 		'countryList',
 		'countryCode',
 		'countryFlag',
-		'model'
+		'countryShape',
+		'model',
+		'canvas',
+		'shape'
 	],
 	#category : 'CountryFlag',
 	#package : 'CountryFlag'
@@ -24,7 +27,10 @@ EarthCountryBrowser >> defaultLayout [
             add: countryList expand: true;
             add: countryCode width: 50)
         height: 30;
-        add: countryFlag expand: true;
+        add: (SpBoxLayout newLeftToRight
+				add: countryShape;
+				add: countryFlag)
+				expand: true;
         yourself
 ]
 
@@ -39,6 +45,8 @@ EarthCountryBrowser >> initializePresenters [
     countryCode text: '--'.
     
     countryFlag := self newImage.
+
+	 countryShape := self newRoassal.
 ]
 
 { #category : 'initialization' }
@@ -67,6 +75,13 @@ EarthCountryBrowser >> modelChanged [
 EarthCountryBrowser >> onCountrySelected: aCountry [
     countryCode text: aCountry code.
     countryFlag image: aCountry fetchFlag.
+    
+    countryShape script: [ :canvas |
+        | shape |
+        shape := aCountry asRSShape.
+        shape color: Color blue.
+        canvas add: shape.
+        canvas zoomToFit ].
 ]
 
 { #category : 'initialization' }
