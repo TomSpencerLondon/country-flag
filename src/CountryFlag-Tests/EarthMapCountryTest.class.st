@@ -15,6 +15,17 @@ EarthMapCountryTest >> testCountryAsRSShape [
 ]
 
 { #category : 'tests' }
+EarthMapCountryTest >> testCountryFromXML [
+	| xml country element |
+	xml := '<path id="FR" title="France" d="M 0 0 L 10 10"/>'.
+	element := (XMLDOMParser parse: xml) root.
+	country := EarthMapCountry new fromXML: element.
+	self assert: country name equals: 'France'.
+	self assert: country code equals: 'FR'.
+	self assert: country svgPath equals: 'M 0 0 L 10 10'. 
+]
+
+{ #category : 'tests' }
 EarthMapCountryTest >> testCountryHasCode [
 	| country |
 	country := EarthMapCountry new.

@@ -26,6 +26,13 @@ EarthMapCountry >> code: countryCode [
 ]
 
 { #category : 'accessing' }
+EarthMapCountry >> fromXML: aXMLElement [
+	name := aXMLElement attributeAt: 'title'.
+	code := aXMLElement attributeAt: 'id'.
+	svgPath := aXMLElement attributeAt: 'd'.
+]
+
+{ #category : 'accessing' }
 EarthMapCountry >> name [
 	^ name
 ]
