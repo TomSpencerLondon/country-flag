@@ -3,10 +3,11 @@
 A Country Flag Browser built in Pharo using Test-Driven Development. Displays country shapes from SVG and fetches flags from the web.
 
 ## Screenshot
-<img width="1465" height="836" alt="Image" src="https://github.com/user-attachments/assets/ade74ef5-e3b2-484d-aa10-9baa691e0d35" />
+<img width="1466" height="892" alt="Image" src="https://github.com/user-attachments/assets/d4987f03-932a-4e70-b2a5-aa16884c3287" />
 When complete, the app shows:
 - Dropdown list of 256 countries
 - Country code display
+- Country shape (blue Roassal visualization)
 - Flag image fetched from flagcdn.com
 
 ## What You'll Learn
